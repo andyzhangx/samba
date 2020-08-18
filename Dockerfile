@@ -1,6 +1,10 @@
 FROM alpine
 MAINTAINER David Personette <dperson@gmail.com>
 
+RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories
+RUN apk update
+RUN apk upgrade
+
 # Install samba
 RUN apk --no-cache --no-progress upgrade && \
     apk --no-cache --no-progress add bash samba shadow tini tzdata && \
